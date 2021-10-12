@@ -211,6 +211,7 @@ const createDeviceRegistryEntries = (
     area_id: null,
     name_by_user: null,
     disabled_by: null,
+    configuration_url: null,
   },
 ];
 
