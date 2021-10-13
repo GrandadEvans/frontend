@@ -1,3 +1,4 @@
+import { mdiOpenInNew } from "@mdi/js";
 import "@polymer/paper-tooltip/paper-tooltip";
 import { css, CSSResultGroup, html, LitElement, TemplateResult } from "lit";
 import { customElement, property, state } from "lit/decorators";
@@ -10,6 +11,7 @@ import { stringCompare } from "../../../common/string/compare";
 import { slugify } from "../../../common/string/slugify";
 import "../../../components/entity/ha-battery-icon";
 import "../../../components/ha-icon-next";
+import "../../../components/ha-svg-icon";
 import { AreaRegistryEntry } from "../../../data/area_registry";
 import {
   ConfigEntry,
@@ -298,8 +300,14 @@ export class HaConfigDevicePage extends LitElement {
                         >
                           <mwc-button>
                             ${this.hass.localize(
-                              "ui.panel.config.devices.open_configuration_url"
+                              `ui.panel.config.devices.open_configuration_url_${
+                                device.entry_type || "device"
+                              }`
                             )}
+                            <ha-svg-icon
+                              .path=${mdiOpenInNew}
+                              slot="trailingIcon"
+                            ></ha-svg-icon>
                           </mwc-button>
                         </a>
                       </div>
@@ -929,6 +937,10 @@ export class HaConfigDevicePage extends LitElement {
 
         ha-card a {
           color: var(--primary-text-color);
+        }
+
+        ha-svg-icon[slot="trailingIcon"] {
+          display: block;
         }
       `,
     ];
